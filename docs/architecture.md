@@ -7,13 +7,14 @@
 | Webフレームワーク | TanStack Start + React + TypeScript |
 | ルーティング | TanStack Router |
 | アプリケーション実行環境 | Cloudflare Workers |
-| データベース | 外部マネージドPostgreSQL |
-| 認証 | Google OAuth 2.0 / OpenID Connect |
+| データベース | 外部マネージドPostgreSQL（Cloudflare Hyperdrive経由） |
+| ORM / migration | Drizzle ORM + drizzle-kit（migrationは管理ジョブ/CIから実行） |
+| 認証 | Better Auth（Google OAuth 2.0 / OpenID Connect、Drizzle adapter） |
 | 内部ID | ULID |
 | 仕様サイト | VitePress |
 | 仕様サイト配信 | GitHub Pages |
 
-外部PostgreSQLの提供元、ORM、認証ライブラリ、メール配信、書籍情報サービスは実装開始前に比較して決定します。
+外部PostgreSQLの提供元、メール配信、書籍情報サービスは引き続き比較・決定します。Webの初期実装は `apps/web` にあり、Cloudflare公式ViteプラグインでWorkersへ出力します。
 
 ## 2. アプリケーション境界
 
@@ -92,17 +93,9 @@ Web画面だけが利用する処理にはServer Functionsを使います。将�
 
 ## 6. PostgreSQL接続
 
-Cloudflare Workersから外部PostgreSQLへ接続するため、実装前に以下を比較します。
+接続方式はCloudflare Hyperdrive経由のPostgreSQL、`pg`、Drizzle ORMに決定し、`apps/web` に実装済みです。各リクエストでHyperdriveの接続文字列をWorker環境から読み取り、少数接続のrequest-scoped `pg` PoolとDrizzle facadeを生成します。処理終了時にはPoolを閉じ、接続文字列やPoolをモジュールグローバルへ保持しません。
 
-- Workers対応ドライバーと接続方式
-- Cloudflare Hyperdrive利用の要否
-- リージョンと通信遅延
-- コネクション管理
-- バックアップとPoint-in-Time Recovery
-- 開発・ステージング・本番環境の分離
-- マイグレーションの実行方法
-
-DBマイグレーションはHTTPリクエスト処理中に実行せず、CIまたは管理された個別ジョブから行います。
+PostgreSQLの提供元、リージョン、通信遅延、バックアップとPoint-in-Time Recovery、開発・ステージング・本番環境の分離は引き続き選定・確認します。DBマイグレーションはHTTPリクエスト処理中に実行せず、`DATABASE_URL` を使うdrizzle-kitをCIまたは管理された個別ジョブから実行します。
 
 ## 7. セキュリティ
 

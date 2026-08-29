@@ -1,16 +1,26 @@
 {
-  "name": "library-specification",
+  "name": "library",
   "private": true,
   "type": "module",
+  "workspaces": ["apps/web"],
   "scripts": {
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs"
+    "docs:preview": "vitepress preview docs",
+    "web:dev": "npm run dev --workspace @library/web",
+    "web:build": "npm run build --workspace @library/web",
+    "web:typecheck": "npm run typecheck --workspace @library/web",
+    "test": "npm run test --workspace @library/web",
+    "typecheck": "npm run web:typecheck",
+    "build": "npm run web:build",
+    "check": "npm run test && npm run typecheck && npm run web:build && npm run docs:build"
   },
   "devDependencies": {
     "vitepress": "1.6.4"
   },
   "overrides": {
-    "vite": "6.4.3"
+    "vitepress": {
+      "vite": "6.4.3"
+    }
   }
 }

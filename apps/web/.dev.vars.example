@@ -1,0 +1,7 @@
+# Copy this file to .dev.vars for local development. Never commit real values.
+BETTER_AUTH_URL=http://localhost:3000
+BETTER_AUTH_SECRET=replace-with-at-least-32-random-characters
+GOOGLE_CLIENT_ID=replace-with-google-oauth-client-id
+GOOGLE_CLIENT_SECRET=replace-with-google-oauth-client-secret
+# Used only by drizzle-kit migrations, never by the Worker request path.
+DATABASE_URL=postgres://user:password@localhost:5432/library

@@ -1,0 +1,12 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "library-web",
+  "compatibility_date": "2025-09-02",
+  "compatibility_flags": ["nodejs_compat"],
+  "main": "@tanstack/react-start/server-entry",
+  "observability": { "enabled": true },
+  "hyperdrive": [
+    { "binding": "HYPERDRIVE", "id": "replace-with-hyperdrive-config-id" }
+  ],
+  "vars": { "BETTER_AUTH_URL": "http://localhost:3000" }
+}

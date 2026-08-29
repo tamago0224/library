@@ -6,10 +6,22 @@
 - [x] TanStack Start + Cloudflare Workers + PostgreSQLを選定
 - [x] 仕様サイトをVitePressで構築
 - [ ] 書籍情報サービスを比較・選定
-- [ ] PostgreSQL提供元と接続方式を選定
-- [ ] 認証・ORM・メール配信ライブラリを選定
+- [ ] PostgreSQL提供元を選定
+- [x] Cloudflareからの接続方式（Hyperdrive）を選定
+- [x] 認証・ORM・マイグレーションライブラリを選定
+- [ ] メール配信ライブラリを選定
 - [ ] 利用規約とプライバシーポリシーを作成・確認
 - [ ] 画面遷移とワイヤーフレームを作成
+
+一般公開前のブロッカー: 招待制の検証、初回オンボーディング（13歳以上確認・ハンドル設定）、規約同意、ユーザー状態によるアクセス制御は未実装です。現在の `/app` は認証済みセッションだけで入れるプレースホルダーです。
+
+### Phase 0 MVP foundation（実装済み）
+
+- [x] npm workspace と TanStack Start / Cloudflare Workers の実行基盤
+- [x] Better Auth の Google 設定、30日セッション、認証ルート（実資格情報が必要）
+- [x] Hyperdrive対応のDrizzle接続ファクトリと初期スキーマ/migration
+- [x] 読書状態遷移と部分日付集計判定のユニットテスト
+- [ ] 初回プロフィール設定、本棚操作、書籍検索などのユーザーフロー
 
 ## Phase 1 — クローズドテスト開始
 

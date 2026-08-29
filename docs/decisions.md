@@ -41,7 +41,9 @@
 | テスト | 運営だけが固有招待URLを発行するクローズドテスト |
 | Web技術 | TanStack Start + React + TypeScript |
 | 実行環境 | Cloudflare Workers |
-| DB | 外部マネージドPostgreSQL |
+| DB | 外部マネージドPostgreSQL（Cloudflare Hyperdrive） |
+| ORM / migration | Drizzle ORM + drizzle-kit。migrationはHTTPリクエスト外で実行 |
+| 認証実装 | Better Auth + Drizzle adapter。Googleのみ、30日セッション、ULID生成 |
 | 仕様サイト | VitePress + GitHub Pages |
 
 ## 未決事項
@@ -52,8 +54,7 @@
 - ハンドルの正確な文字種、長さ、予約語
 - 表示名、自己紹介、感想、メモ、タグの文字数上限
 - 書籍情報・表紙の取得元と利用条件
-- 外部PostgreSQLの提供元とCloudflareからの接続方式
-- ORM、マイグレーションツール、認証ライブラリ
+- 外部PostgreSQLの提供元
 - メール配信サービス
 - 監査情報の保持期間
 - 退会処理における法的保持データ

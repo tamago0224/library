@@ -1,4 +1,10 @@
 node_modules/
+apps/web/dist/
+apps/web/.wrangler/
+.dev.vars
+.env
+.env.*
+!.dev.vars.example
 docs/.vitepress/cache/
 docs/.vitepress/dist/
 .DS_Store
